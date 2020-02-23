@@ -190,3 +190,46 @@ body {
 .slider-arrow-right:hover, .slider-arrow-left:hover {
   transform: scale(1.2);
 }
+
+
+.services {
+  padding: 35px 40px;
+  color: #666d89;
+
+}
+
+.services h2 {
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.annotation {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+.article-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article-wrapper {
+  width: 33%;
+  display: flex;
+}
+
+.article-header {
+  font-size: 18px;
+  font-weight: 700;
+}
+.article-image {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+}
+
+.article-wrapper > div {
+  display: flex;
+  flex-direction: column;
+}
