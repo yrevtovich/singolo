@@ -43,13 +43,13 @@ h1 {
 body {
   font-family: "Lato";
   font-size: 12px;
-  font-weight: 400;
-  box-sizing: border-box;
+  font-weight: 400;  
 }
 
 .container {
   margin: 0 auto;
   width: 1020px;
+  box-sizing: border-box;
 }
 
 .header {  
@@ -97,11 +97,96 @@ body {
 
 .main-navigation li+li:before {
   content: "\00B7";
-    position: relative;
-    left: -14px;
-    opacity: .2;
+  position: relative;
+  left: -14px;
+  opacity: .2;
 }
 
 .main-navigation a:hover {
   color: #f06c64;
+}
+
+.slider {  
+  height: 600px;
+  border-bottom: 5px solid #ea676b;
+  background-color: #f06c64;
+  position: relative;
+}
+
+.slider-content {
+  padding: 53px 0;
+  margin: 0 auto;
+  width: 820px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.slider-arrow {
+  position: absolute;
+}
+
+.phone {
+  position: relative;
+}
+
+.phone-vertical {
+  margin-left: 12px;
+  display: block;
+}
+
+.phone-vertical:after {
+  content: url("./assets/images/iphone-shadow.png");
+  position: absolute;
+  left: 0;
+}
+
+.phone-horizontal {
+  right: 160px;
+  transform: rotate(90deg);
+}
+
+.phone-horizontal:after {
+  content: url("./assets/images/iphone-shadow.png");
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  transform: rotateY(180deg);
+}
+
+.display {
+  width: 190px;
+  height: 335px;
+  position: absolute;
+  left: 13px;
+  top: 64px;
+}
+
+.vertical-display {
+  
+  background-image: url(./assets/images/vertical-phone-bg.png);
+}
+
+.horizontal-display{
+  background-image: url(./assets/images/horizontal-phone-bg.png);
+}
+
+
+.slider-arrow {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 279px;
+}
+
+.slider-arrow-left {  
+    left: 35px;
+}
+
+.slider-arrow-right {
+  right: 35px;
+}
+
+.slider-arrow-right:hover, .slider-arrow-left:hover {
+  transform: scale(1.2);
 }
