@@ -35,7 +35,7 @@ a {
   cursor: pointer;
 }
 
-h1 {
+h1, p {
   margin: 0;
   font-size: 1em;
 }
@@ -94,6 +94,9 @@ body {
   margin-left: 28px;
   letter-spacing: -0.3px;
 }
+.main-navigation a {
+  color: #fff;
+}
 
 .main-navigation li+li:before {
   content: "\00B7";
@@ -128,6 +131,7 @@ body {
 
 .phone {
   position: relative;
+  z-index: 1;
 }
 
 .phone-vertical {
@@ -139,6 +143,7 @@ body {
   content: url("./assets/images/iphone-shadow.png");
   position: absolute;
   left: 0;
+  z-index: -1;
 }
 
 .phone-horizontal {
@@ -152,6 +157,7 @@ body {
   left: 0px;
   bottom: 0px;
   transform: rotateY(180deg);
+  z-index: -1;
 }
 
 .display {
@@ -164,13 +170,12 @@ body {
 
 .vertical-display {
   
-  background-image: url(./assets/images/vertical-phone-bg.png);
+  background-image: url("./assets/images/vertical-phone-bg.png");
 }
 
 .horizontal-display{
-  background-image: url(./assets/images/horizontal-phone-bg.png);
+  background-image: url("./assets/images/horizontal-phone-bg.png");
 }
-
 
 .slider-arrow {
   background: none;
@@ -191,22 +196,27 @@ body {
   transform: scale(1.2);
 }
 
-
 .services {
-  padding: 35px 40px;
+  padding: 35px 30px;
   color: #666d89;
-
+  border-bottom: 5px solid #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .services h2 {
+  margin-left: 10px;
+  margin-bottom: 18px;
   font-size: 30px;
   font-weight: 900;
 }
 
 .annotation {
+  margin-left: 10px;
+  margin-bottom: 47px;
   font-size: 18px;
   font-weight: 300;
-  line-height: 25px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
 }
 
 .article-container {
@@ -215,21 +225,29 @@ body {
 }
 
 .article-wrapper {
-  width: 33%;
+  margin: 0 10px 33px;
+  width:300px;
   display: flex;
 }
 
-.article-header {
-  font-size: 18px;
-  font-weight: 700;
-}
-.article-image {
-  width: 60px;
-  height: 60px;
-  display: inline-block;
+.article-wrapper img {
+  min-width: 60px;
+  max-height: 60px;
 }
 
 .article-wrapper > div {
+  margin-left: 21px;;
   display: flex;
   flex-direction: column;
+}
+
+.article-header {
+  line-height: 18px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.article-topic {
+  line-height: 21px;
 }
