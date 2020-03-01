@@ -1,0 +1,115 @@
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Light.ttf") format("truetype");
+    font-weight: 300;
+} 
+  
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
+    font-weight: 400;  
+}
+  
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Bold.ttf") format("truetype");
+    font-weight: 700;  
+}
+  
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Black.ttf") format("truetype");
+    font-weight: 900;  
+}
+  
+* {
+    margin: 0;
+    cursor: default;
+}
+  
+ul {
+    padding: 0;
+    list-style: none;
+}
+  
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+h1, p {
+    margin: 0;
+    font-size: 1em;
+}
+  
+body {
+    font-family: "Lato";
+    font-size: 12px;
+    font-weight: 400;  
+}
+  
+.container {
+    margin: 0 auto;
+    width: 1020px;
+    box-sizing: border-box;
+}
+
+.portfolio {
+    padding: 60px 40px 64px;
+    background-color: #2d303a;
+    color: #767e9e;
+    border-bottom: 5px solid #323746;
+}
+
+.portfolio-header {
+    margin-bottom: 25px;
+    font-weight: 900;
+    font-size: 30px;
+    color: #666d89;
+}
+
+.portfolio-annotation {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.portfolio-navigation {
+    margin-bottom: 19px;
+    display: flex;
+}
+
+.portfolio-navigation-item {
+    margin-right: 10px;
+    padding: 0 6px;
+    line-height: 20px;
+    border: 1px solid #666d89;
+    border-radius: 5px;
+}
+
+.portfolio-navigation-item:hover {
+    color: #dedede;
+    border-color: #dedede;
+}
+
+.portfolio-gallery {
+    height: 605px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.portfolio-gallery-item {
+    height: 187px;
+    margin-bottom: 20px;
+}
+
+.portfolio-gallery-image {
+    width: 220px;
+    height: 100%;
+}
+
+.about-us {
+    padding: 65px 40px;
+}
