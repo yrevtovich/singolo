@@ -88,17 +88,18 @@ body {
 }
 
 .portfolio {
-    padding: 60px 40px 64px;
+    padding: 61px 40px 63px;
     background-color: #2d303a;
     color: #767e9e;
-    border-bottom: 5px solid #323746;
+    border-bottom: 6px solid #323746;
 }
 
 .portfolio-header {
-    margin-bottom: 25px;
+    margin-bottom: 24px;
     font-weight: 900;
     font-size: 30px;
     color: #666d89;
+    letter-spacing: -0.2px;
 }
 
 .portfolio-annotation {
@@ -114,15 +115,39 @@ body {
 
 .portfolio-navigation-item {
     margin-right: 10px;
-    padding: 0 6px;
     line-height: 20px;
+    text-align: center;
     border: 1px solid #666d89;
     border-radius: 5px;
 }
 
+.portfolio-navigation-item.all {
+    margin-left: 1px;
+    padding: 0 6.5px 0 6.5px;
+}
+
+.portfolio-navigation-item.web-design {
+    padding: 0px 6px 0 6px;
+}
+
+.portfolio-navigation-item.graphic-design {
+    padding: 0 5.5px 0 5.5px;
+}
+
+.portfolio-navigation-item.artbook {
+    padding: 0 5px 0 5px;
+}
+
+.portfolio-navigation-item a {    
+    color: #767e9e;
+}
+
 .portfolio-navigation-item:hover {
-    color: #dedede;
     border-color: #dedede;
+}
+
+.portfolio-navigation-item:hover > a {
+    color: #dedede;
 }
 
 .portfolio-gallery {
@@ -144,10 +169,10 @@ body {
 }
 
 .about-us {
-    padding: 60px 40px;
+    padding: 60px 40px 64px;
     background-color: #f2f2f2;
     color: #767e9e;
-    border-bottom: 5px solid #fff;
+    border-bottom: 6px solid #fff;
 }
 
 .about-us-header {
@@ -207,8 +232,7 @@ body {
     margin-right: 8px;
     width: 30px;
     height: 30px;
-    font-size: 17px;
-    color: #666d89;
+    font-size: 17px;    
     text-align: center;
     border: 1px solid #666d89;
     border-radius: 50%;
@@ -216,17 +240,21 @@ body {
 
 .member-socials i {
     font-size: 16px;
+    color: #666d89;
     line-height: 30px;
     font-weight: 700;
     vertical-align: middle;
 }
 
 .member-socials li:hover  {
-    color: #fc7f51;
     border-color: #fc7f51;
+    cursor: pointer;
 }
 
-
+.member-socials li:hover i {
+    color: #fc7f51;
+    cursor: pointer;
+}
 
     
 
