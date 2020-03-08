@@ -55,7 +55,7 @@ body {
 
 .header {  
   padding-top: 31px;
-  padding-bottom: 21px;
+  padding-bottom:32px;
   text-transform: uppercase;
   border-bottom: 6px solid #323746;
   background-color: #2d303a;
@@ -93,6 +93,7 @@ body {
 
 .main-navigation li {
   margin-left: 28px;
+  padding-top: 12px;
   letter-spacing: -0.3px;
 }
 .main-navigation a {
