@@ -233,8 +233,8 @@ body {
     background-position: -123px -117px;
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg);
-    right: -59px;
-    top: 137px;    
+    right: -60px;
+    top: 136px;    
 }
 
 .slider-arrow {
@@ -740,4 +740,10 @@ input::placeholder, textarea::placeholder {
     visibility: hidden;
     height: 0;
     width: 0;
+}
+
+
+.hide-display {
+    background-color: black;
+    background-image: none;
 }
