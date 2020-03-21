@@ -4,6 +4,12 @@ const GALLERY = document.querySelector('.portfolio-gallery');
 const GALLERY_TABS = document.querySelector('.portfolio-navigation');
 const FORM = document.querySelector('.message-form');
 const FORM_BTN = document.querySelector('.submit-btn');
+const SLIDER_ITEMS = document.querySelectorAll('.slider-item');
+const sliderBtnRight = document.querySelector('.slider-arrow-right');
+const sliderBtnLeft = document.querySelector('.slider-arrow-left');
+
+let currentSlide = 0;
+let nextSlide = 0;
 
 MENU.addEventListener('click', event => {
     MENU.querySelectorAll('a').forEach( (elem) => elem.classList.remove('active'));
@@ -71,6 +77,11 @@ function displaySendMessage() {
 
     messageBlockBg.querySelector('.message-btn').addEventListener('click', () => {
         messageBlockBg.remove();
+        document.body.classList.remove('cancel-scroll');
+        subject.value = '';
+        description.value = '';
+        document.querySelector('.name-field').value = '';
+        document.querySelector('.email-field').value = '';
     })
 }
 
@@ -116,4 +127,40 @@ function messageConstruction(sbj, descr) {
 
     return messageBlockBg;
 }
+
+// slider
+
+
+
+function changeSlide(directionOut, directionIn) {
+    moveSlides('to', directionOut, currentSlide);
+    nextSlide = (currentSlide + 1) % SLIDER_ITEMS.length;
+    moveSlides('from', directionIn, nextSlide);    
+}
+
+function moveSlides(type, direction, slide) {
+    if (type === 'from') {
+        SLIDER_ITEMS[slide].classList.remove('hide');
+    }
+
+    SLIDER_ITEMS[slide].classList.add(`move-${type}-${direction}`);
+
+    SLIDER_ITEMS[slide].addEventListener('animationend', () => {
+        SLIDER_ITEMS[slide].classList.remove(`move-${type}-${direction}`);
+
+        if (type === 'to') {
+            SLIDER_ITEMS[slide].classList.add('hide');
+        }        
+    });  
+}
+
+sliderBtnLeft.addEventListener('click', () => {
+    changeSlide('left', 'right');
+    currentSlide = nextSlide;
+});
+
+sliderBtnRight.addEventListener('click', () => {
+    changeSlide('right', 'left');
+    currentSlide = nextSlide;
+});
 
