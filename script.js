@@ -145,13 +145,9 @@ function moveSlides(type, direction, slide) {
 
     SLIDER_ITEMS[slide].classList.add(`move-${type}-${direction}`);
 
-    SLIDER_ITEMS[slide].addEventListener('animationend', () => {
-        SLIDER_ITEMS[slide].classList.remove(`move-${type}-${direction}`);
-
-        if (type === 'to') {
-            SLIDER_ITEMS[slide].classList.add('hide');
-        }        
-    });  
+    SLIDER_ITEMS[slide].addEventListener('animationend', slideAnimationend.bind(null, type, direction, slide));  
+    
+    SLIDER_ITEMS[slide].removeEventListener('animationend', slideAnimationend);
 }
 
 sliderBtnLeft.addEventListener('click', () => {
@@ -163,4 +159,12 @@ sliderBtnRight.addEventListener('click', () => {
     changeSlide('right', 'left');
     currentSlide = nextSlide;
 });
+
+function slideAnimationend(type, direction, slide) {
+    SLIDER_ITEMS[slide].classList.remove(`move-${type}-${direction}`);
+
+        if (type === 'to') {
+            SLIDER_ITEMS[slide].classList.add('hide');
+        }   
+}
 
