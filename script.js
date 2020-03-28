@@ -1,4 +1,5 @@
 const MENU = document.querySelector('.main-navigation');
+const navLinks = document.querySelectorAll('.nav-link');
 const PHONES = document.querySelector('.phones');
 const GALLERY = document.querySelector('.portfolio-gallery');
 const GALLERY_TABS = document.querySelector('.portfolio-navigation');
@@ -7,9 +8,13 @@ const FORM_BTN = document.querySelector('.submit-btn');
 const SLIDER_ITEMS = document.querySelectorAll('.slider-item');
 const sliderBtnRight = document.querySelector('.slider-arrow-right');
 const sliderBtnLeft = document.querySelector('.slider-arrow-left');
+const topOffset = document.querySelector('.header').offsetHeight;
 
 let currentSlide = 0;
 let nextSlide = 0;
+let isClickActionAvailable = true;
+    
+window.addEventListener('scroll', scrollChangeMenuStyle);
 
 MENU.addEventListener('click', event => {
     MENU.querySelectorAll('a').forEach( (elem) => elem.classList.remove('active'));
@@ -17,6 +22,45 @@ MENU.addEventListener('click', event => {
         event.target.classList.add('active');
     }
 });
+
+navLinks.forEach( link => {
+    link.addEventListener('click', function(elem) {
+        elem.preventDefault();
+
+        let linkName = this.getAttribute('href').substring(1);
+        const scrollTarget = document.getElementById(linkName);        
+        const elementPosition = scrollTarget.getBoundingClientRect().top;
+        const offsetPosition = elementPosition - topOffset;
+
+        window.scrollBy({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+
+    });
+}); 
+
+function scrollChangeMenuStyle() {
+    let windowPosition = window.scrollY;   
+    document.querySelectorAll('.container').forEach(function(section) {              
+        let sectionOffset = section.offsetTop;    
+        let sectionHeight = section.offsetHeight;    
+        let sectionName = section.getAttribute('id');
+        
+        if (windowPosition >= sectionOffset - topOffset && windowPosition <= sectionOffset + sectionHeight) {
+
+            navLinks.forEach( link => {
+                link.classList.remove('active');
+                if ( link.getAttribute('href').substring(1) === sectionName) {
+                    link.classList.add('active');
+                }
+                if ( (sectionName === 'slider' || sectionName === 'header') && link.getAttribute('href').substring(1) === 'home') {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });       
+}
 
 PHONES.addEventListener('click', event => {
     let phoneClass = event.target.classList[0];
@@ -28,15 +72,15 @@ PHONES.addEventListener('click', event => {
 });
 
 GALLERY.addEventListener('click', event => {
-    GALLERY.querySelectorAll('IMG').forEach( elem => elem.classList.remove('portfolio-gallery-item-active'));
     GALLERY.querySelectorAll('LI').forEach( elem => elem.classList.remove('portfolio-gallery-item-active'));
 
-    if (event.target.tagName === 'LI' || event.target.tagName === 'IMG') {
-        event.target.classList.add('portfolio-gallery-item-active');
+    if (event.target.tagName === 'IMG') {
+        event.target.parentElement.classList.add('portfolio-gallery-item-active');
     }
 });
 
 GALLERY_TABS.addEventListener('click', event => {    
+    if (event.target.classList.contains('portfolio-navigation-item-active')) return;
     if (event.target.tagName === 'LI') {
         GALLERY_TABS.querySelectorAll('.portfolio-navigation-item').forEach( elem => {
             if ( elem.classList.contains('portfolio-navigation-item-active')) {
@@ -48,17 +92,30 @@ GALLERY_TABS.addEventListener('click', event => {
         
         GALLERY_TABS.querySelectorAll('.portfolio-navigation-item').forEach( (item, index) => {
             if( item === event.target) {
-                GALLERY.querySelectorAll('.portfolio-gallery-item').forEach( (elem, idx, arr) => {                    
-                    if ( (idx + index) < arr.length) {
-                        elem.style.setProperty('--order', `${idx + index}`);
-                    } else {
-                        elem.style.setProperty('--order', `0`);
-                    }
-                })
+                changeGalleryItemsOrder();
             }
         });
     }
 });
+
+function changeGalleryItemsOrder() {
+    let galleryElemArr = [];
+    GALLERY.querySelectorAll('.portfolio-gallery-item').forEach( (elem, idx, arr) => {  
+        if ( (idx + 1) < arr.length) {
+            galleryElemArr[idx + 1] = elem.cloneNode(true);
+            elem.remove();
+        } else {
+            galleryElemArr[0] = elem.cloneNode(true);
+            elem.remove();
+        }
+    });
+
+    galleryElemArr.forEach( elem => {
+        GALLERY.appendChild(elem);
+    });
+}
+
+
 
 FORM_BTN.addEventListener('click', event => {
     if( FORM.checkValidity()) {
@@ -128,43 +185,40 @@ function messageConstruction(sbj, descr) {
     return messageBlockBg;
 }
 
-// slider
-
-
-
 function changeSlide(directionOut, directionIn) {
+    if(!isClickActionAvailable) {
+        return
+    }
+    isClickActionAvailable = false;
     moveSlides('to', directionOut, currentSlide);
-    nextSlide = (currentSlide + 1) % SLIDER_ITEMS.length;
-    moveSlides('from', directionIn, nextSlide);    
+    nextSlide = (nextSlide + 1) % SLIDER_ITEMS.length;
+    moveSlides('from', directionIn, nextSlide);
+    currentSlide = nextSlide;
 }
 
 function moveSlides(type, direction, slide) {
     if (type === 'from') {
         SLIDER_ITEMS[slide].classList.remove('hide');
     }
-
     SLIDER_ITEMS[slide].classList.add(`move-${type}-${direction}`);
+}
 
-    SLIDER_ITEMS[slide].addEventListener('animationend', slideAnimationend.bind(null, type, direction, slide));  
-    
-    SLIDER_ITEMS[slide].removeEventListener('animationend', slideAnimationend);
+SLIDER_ITEMS.forEach((elem, index) => {
+    elem.addEventListener('animationend', slideAnimationend.bind(null, elem, index));
+});
+
+function slideAnimationend(elem, index) {
+    elem.classList.remove('move-to-right', 'move-from-right', 'move-to-left', 'move-from-left');
+    if(currentSlide !== index){
+        elem.classList.add('hide');
+    }
+    isClickActionAvailable = true;
 }
 
 sliderBtnLeft.addEventListener('click', () => {
     changeSlide('left', 'right');
-    currentSlide = nextSlide;
 });
 
 sliderBtnRight.addEventListener('click', () => {
     changeSlide('right', 'left');
-    currentSlide = nextSlide;
 });
-
-function slideAnimationend(type, direction, slide) {
-    SLIDER_ITEMS[slide].classList.remove(`move-${type}-${direction}`);
-
-        if (type === 'to') {
-            SLIDER_ITEMS[slide].classList.add('hide');
-        }   
-}
-
