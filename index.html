@@ -8,34 +8,45 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header class="header container">
-        <a class="logo-link" href="#"><h1 class="logo">SINGOLO</h1><span class="logo-addition">*</span></a>
-        <nav>
-            <ul class="main-navigation">
-                <li><a href="#">home</a></li>
-                <li><a href="#">services</a></li>
-                <li><a href="#">portfolio</a></li>
-                <li><a href="#">about</a></li>
-                <li><a href="#">contact</a></li>
-            </ul>
-        </nav>
+    <a class="anchor"  id="home"></a> 
+    <header>
+        <div class="header container" id="header">
+            <a class="logo-link" href="#home"><h1 class="logo">SINGOLO</h1><span class="logo-addition">*</span></a> </a>
+            <nav>
+                <ul class="main-navigation">
+                    <li><a class="nav-link active" href="#home">home</a></li>
+                    <li><a class="nav-link" href="#services">services</a></li>
+                    <li><a class="nav-link" href="#portfolio">portfolio</a></li>
+                    <li><a class="nav-link" href="#about">about</a></li>
+                    <li><a class="nav-link" href="#contact">contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+</div>
     <main>
-        <section class="slider container">
-            <div class="slider-content">
-                <div class="phone phone-vertical">
-                    <img src="./assets/images/Iphone.png" alt="iPhone">
-                    <div class="display vertical-display"></div>
+        <section class="slider container" id="slider">
+            <div class="slider-wrapper">
+                <div class="slider-item first-item">
+                    <div class="slider-content phones">
+                        <div class="phone phone-vertical">
+                            <img class="vertical" src="./assets/images/Iphone.png" alt="iPhone">
+                            <div class="vertical display vertical-display"></div>
+                        </div>
+                        <div class="phone phone-horizontal">
+                            <img class="horizontal" src="./assets/images/Iphone.png" alt="iPhone">
+                            <div class="horizontal display horizontal-display"></div>
+                        </div>                
+                    </div>
                 </div>
-                <div class="phone phone-horizontal">
-                    <img src="./assets/images/Iphone.png" alt="iPhone">
-                    <div class="display horizontal-display"></div>
-                </div>                
-            </div>
+                <div class="slider-item second-item hide">
+                    <img src="./assets/images/slider-2.png" alt="">
+                </div>
+            </div>            
             <button class="slider-arrow slider-arrow-left"><img src="./assets/images/arrow.png" alt="scroll left"></button>
             <button class="slider-arrow slider-arrow-right"><img src="./assets/images/arrow-r.png" alt="scroll right"></button>
         </section>
-        <section class="services container"> 
+        <section class="services container" id="services">
             <h2>Our Services</h2>
             <p class="annotation">
                 Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
@@ -97,16 +108,16 @@
                 </div>
             </div>
         </section>
-        <section class="portfolio container">
+        <section class="portfolio container" id="portfolio">
             <h2 class="portfolio-header">Portfolio</h2>
             <p class="portfolio-annotation">
                 Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
             </p>
             <ul class="portfolio-navigation">
-                <li class="portfolio-navigation-item all"><a href="#"> All</a></li>
-                <li class="portfolio-navigation-item web-design"><a href="#">Web Design</a></li>
-                <li class="portfolio-navigation-item graphic-design"><a href="#">Graphic Design</a></li>
-                <li class="portfolio-navigation-item artbook"><a href="#">Artwork</a></li>
+                <li class="portfolio-navigation-item all portfolio-navigation-item-active"> All </li>
+                <li class="portfolio-navigation-item web-design">Web Design</li>
+                <li class="portfolio-navigation-item graphic-design">Graphic Design</li>
+                <li class="portfolio-navigation-item artbook">Artwork</li>
             </ul>
             <ul class="portfolio-gallery">
                 <li class="portfolio-gallery-item"><img class="portfolio-gallery-image" src="./assets/images/Image1.png" alt="image"></li>
@@ -123,7 +134,7 @@
                 <li class="portfolio-gallery-item"><img class="portfolio-gallery-image" src="./assets/images/Image12.png" alt="image"></li>
             </ul>
         </section>
-        <section class="about-us container">
+        <section class="about-us container" id="about">
             <h2 class="about-us-header">About Us</h2>
             <p class="about-us-annotation">
                 Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
@@ -170,7 +181,7 @@
                 </li>
             </ul>
         </section>
-        <section class="container get-a-quote">
+        <section class="container get-a-quote" id="contact">
             <h2 class="get-a-quote-header">Get a Quote</h2>
             <p class="get-a-quote-annotation">
                 Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
@@ -180,7 +191,7 @@
                     <input class="name-field" type="text" placeholder="Name (Required)" required>
                     <input class="email-field" type="email" placeholder="Email (Required)" required>
                     <input class="subject-field" type="text" placeholder="Subject">
-                    <textarea class="message-field"name="" id="" cols="30" rows="10" placeholder="Describe your project in detail..."></textarea>
+                    <textarea class="message-field"name="" id="" cols="30" rows="10" maxlength="1000" placeholder="Describe your project in detail..."></textarea>
                     <button class="submit-btn" type="submit">Submit</button>
                 </form>
                 <div class="contact-info">
@@ -215,5 +226,6 @@
             <li><i class="icon-linkedin"></i></li>
         </ul>
     </footer>    
+    <script src="./script.js"></script>
 </body>
 </html>
