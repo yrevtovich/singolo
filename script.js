@@ -9,6 +9,8 @@ const SLIDER_ITEMS = document.querySelectorAll('.slider-item');
 const sliderBtnRight = document.querySelector('.slider-arrow-right');
 const sliderBtnLeft = document.querySelector('.slider-arrow-left');
 const topOffset = document.querySelector('.header').offsetHeight;
+const mobMenuBtn = document.querySelector('.mob-menu-btn ');
+
 
 let currentSlide = 0;
 let nextSlide = 0;
@@ -222,3 +224,12 @@ sliderBtnLeft.addEventListener('click', () => {
 sliderBtnRight.addEventListener('click', () => {
     changeSlide('right', 'left');
 });
+
+
+mobMenuBtn.addEventListener('click', activateMobMenu);
+
+function activateMobMenu() {
+    document.querySelector('.main-logo').classList.add('hide');
+}
+
+
