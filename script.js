@@ -36,12 +36,16 @@ navLinks.forEach( link => {
         let linkName = this.getAttribute('href').substring(1);
         const scrollTarget = document.getElementById(linkName);        
         const elementPosition = scrollTarget.getBoundingClientRect().top;
-        const offsetPosition = elementPosition - topOffset;
+        const offsetPosition = elementPosition - topOffset + 1;
 
         window.scrollBy({
             top: offsetPosition,
             behavior: 'smooth'
         });
+
+        if ( MENU_WRAPPER.classList.contains('show') ) {
+            activateMobMenu();
+        }
 
     });
 }); 
@@ -233,7 +237,7 @@ sliderBtnRight.addEventListener('click', () => {
 mobMenuBtn.addEventListener('click', activateMobMenu);
 
 function activateMobMenu() {
-    document.body.classList.toggle('cancel-scroll');
+    document.body.classList.toggle('cancel-scroll-mob');
     
     if (mobMenuActive === false) {
         mobMenuActive = true;
@@ -256,7 +260,7 @@ function activateMobMenu() {
 }
 
 
-MENU.addEventListener('click', activateMobMenu);
+// MENU.addEventListener('click', activateMobMenu);
 
 MENU_WRAPPER.addEventListener('animationend', elem => {
     MENU_WRAPPER.classList.remove('hide-menu', 'show-menu');
