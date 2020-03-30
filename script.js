@@ -1,4 +1,5 @@
 const MENU = document.querySelector('.main-navigation');
+const MENU_WRAPPER = document.querySelector('nav');
 const navLinks = document.querySelectorAll('.nav-link');
 const PHONES = document.querySelector('.phones');
 const GALLERY = document.querySelector('.portfolio-gallery');
@@ -10,11 +11,14 @@ const sliderBtnRight = document.querySelector('.slider-arrow-right');
 const sliderBtnLeft = document.querySelector('.slider-arrow-left');
 const topOffset = document.querySelector('.header').offsetHeight;
 const mobMenuBtn = document.querySelector('.mob-menu-btn ');
+const mainLogo = document.querySelector('.main-logo');
 
 
 let currentSlide = 0;
 let nextSlide = 0;
 let isClickActionAvailable = true;
+let mobMenuActive = false;
+let leftOffset = 0;
     
 window.addEventListener('scroll', scrollChangeMenuStyle);
 
@@ -229,7 +233,56 @@ sliderBtnRight.addEventListener('click', () => {
 mobMenuBtn.addEventListener('click', activateMobMenu);
 
 function activateMobMenu() {
-    document.querySelector('.main-logo').classList.add('hide');
+    document.body.classList.toggle('cancel-scroll');
+    
+    if (mobMenuActive === false) {
+        mobMenuActive = true;
+        document.querySelector('.mob-menu-btn').classList.add('rotate-open');
+        document.querySelector('.mob-menu-btn').classList.remove('rotate-close');
+        MENU_WRAPPER.classList.add('show-menu', 'show');
+        setPropertyOpen();
+        mainLogo.classList.add('move-logo-open');
+        
+    } else {
+        mobMenuActive = false;
+        document.querySelector('.mob-menu-btn').classList.add('rotate-close');
+        document.querySelector('.mob-menu-btn').classList.remove('rotate-open');
+        MENU_WRAPPER.classList.add('hide-menu');
+        setPropertyClose();
+        mainLogo.classList.add('move-logo-close');
+        
+    }
+    
 }
 
+
+MENU.addEventListener('click', activateMobMenu);
+
+MENU_WRAPPER.addEventListener('animationend', elem => {
+    MENU_WRAPPER.classList.remove('hide-menu', 'show-menu');
+    if (mobMenuActive === false) {
+        MENU_WRAPPER.classList.remove('show');
+    }
+
+})
+
+mainLogo.addEventListener('animationend', elem => {
+    mainLogo.classList.remove('move-logo-open', 'move-logo-close');    
+    document.querySelector('.logo-wrapper').classList.toggle('center');
+    if (mobMenuActive === true) {
+        mainLogo.classList.add('menu-logo');
+    } else {
+        mainLogo.classList.remove('menu-logo');
+    }
+});
+
+function setPropertyOpen() {
+    leftOffset = mainLogo.offsetLeft;
+    mainLogo.style.setProperty('--spaceOpen', `${(77-leftOffset)}px`);
+}
+
+function setPropertyClose() {
+    let currentOffset = mainLogo.offsetLeft;
+    mainLogo.style.setProperty('--spaceClose', `${(leftOffset-currentOffset)}px`);
+}
 
